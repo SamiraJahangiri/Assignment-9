@@ -1,0 +1,29 @@
+#Assignment_9
+Cancer_Survival <- read.table("F:\\Rstudio\\#9\\CancerSurvival.csv", header = TRUE, sep = ",") 
+plot(Cancer_Survival, col="green")
+title(main="Cancer_Survival", col.main="red", font.main=4)
+
+install.packages("lattice")
+library("lattice")
+cloud(lat~Survival*Organ, data=quakes, pch=".") 
+
+histogram( ~ Survival | Organ, data = Cancer_Survival,
+           xlab = "Height (inches)", type = "density",
+           panel = function(x, ...) {
+             panel.histogram(x, ...)
+             panel.mathdensity(dmath = dnorm, col = "black",
+                               args = list(mean=mean(x),sd=sd(x)))
+           } )
+
+
+
+install.packages("ggplot2")
+library("ggplot2")
+
+ggp <- ggplot(Cancer_Survival, aes(Survival, Organ)) + geom_point()
+ggp + geom_vline(xintercept = 5)
+
+
+
+
+
